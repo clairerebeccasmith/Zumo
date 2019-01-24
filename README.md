@@ -7,6 +7,7 @@ Task 1:
   * **Problems faced:** Couldn't get a connection between Arduino IDE and Processing. 
   * **Solution:** Wasn't using the correct portname. Needed to use Serial.list()[1] instead of Serial.list()[0].
   * **Completed:** YES
+  
 Task 2:
   * **Description:** The Zumo can move automatically down the corridor, turning away from the walls when detected by the 
   * **Problems faced:** 
