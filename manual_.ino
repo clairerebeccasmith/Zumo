@@ -25,6 +25,7 @@ char currentSetting; //determines which mode we are currently in ie. manual/auto
 bool wall;
 char val;
 int maxSensorValue[6];
+int roomNumber;
 
 /*-----setup-----*/
 void setup() 
@@ -59,6 +60,7 @@ void setup()
     motors.setSpeeds(0,0);
     //start robot in autonomous mode 
     currentSetting = 'a';
+    roomNumber = 0;
     button.waitForButton();
     
 }
@@ -122,16 +124,6 @@ void moveManually() {
           motors.setSpeeds(0,0);
           Serial.print("Stopped");
           break;
-/*----task 4------*/
-//        //room on the left 
-//        case 'x':
-//          motors.setSpeeds(0,0);
-//          break;
-//
-//        //room on the right 
-//        case 'y':
-//          motors.setSpeeds(0,0);
-//          break;
 
         //user input is complete, go back to auto 
         case 'C':
@@ -163,19 +155,30 @@ void moveAutonomously() {
   }
   else {
     //task 4 
-    if(val == 'x')
+    if(val == 'o')
     {
-      //go to manual mode 
-      currentSetting = 'm';
+      motors.setSpeeds(0,0);
+      val = Serial.read();
+      if(val == 'x')
+      {
+        //room is on the left 
+        //number the room 
+        //move manually to let the user turn into the room 
+        //search room 
+        //back to manual to let user move into corridor 
+      }
+      else{
+        if(val == 'y')
+        {
+          //room is on the right
+          //number the room  
+          //move manually to let the user turn into the room
+          //search room 
+          //back to manual to let user move into corridor 
+        }
+      }
     }
     else {
-      //task 4 
-      if(val == 'y')
-      {
-        //go to manual mode
-        currentSetting = 'm';
-      }
-      else {
         //if center sensor detects black line, must be at a corner 
         if(sensor_values[3] > maxSensorValue[3])
         {
@@ -218,4 +221,21 @@ void moveAutonomously() {
     }
   }
   
+}
+
+void searchARoomAuto() {
+//move into room
+//stop 
+//scan around the room 
+//if object is present, tell the gui which room it is in
+//stop 
+//tell user to navigate out thr room and turn into corridor 
+
+}
+
+void enterRoom() {
+  //while val != 'C' 
+  //allow user to move manually 
+  //when val is 'C'
+  //leave function 
 }
