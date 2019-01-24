@@ -10,12 +10,13 @@ Task 1:
   
 Task 2:
   * **Description:** The Zumo can move automatically down the corridor, turning away from the walls when detected by the 
-  * **Problems faced:** 
+  * **Problems faced:** Altering BorderDetect so that it detects a black line on a white background instead of a white line on black background. 
+  Stopping at a corner rather than trying to correct itself to continue straight. 
   * **Solution:**
   * **Completed:** YES
 
 Task 3:
-  * **Description:**
+  * **Description:** User manually moves the Zumo around the corner and then signals when it is complete so the Zumo can continue down the coridor automatically. 
   * **Problems faced:**
   * **Solution:**
   * **Completed:** YES
