@@ -50,13 +50,14 @@ void setup()
     delay(20);
     }
       motors.setSpeeds(0,0);
+    //store data from calibration for difference in back/white 
     for(int i = 0; i < 6; i++)
     {
       maxSensorValue[i] = sensors.calibratedMaximumOn[i];
     }
 
     motors.setSpeeds(0,0);
-
+    //start robot in autonomous mode 
     currentSetting = 'a';
     button.waitForButton();
     
@@ -64,19 +65,7 @@ void setup()
 
 void loop() 
 {
-
-//    switch(currentSetting) {
-//      
-//        case 'm':
-//          moveManually();
-//          break;
-//          
-//        case 'a':
-//          moveAutonomously();
-//          break;
-//        
-//    }
-
+    //check what mode the robot is currently in and move accordingly 
     if(currentSetting == 'm') {
       moveManually();
     }
@@ -89,16 +78,14 @@ void loop()
 }
 
 void moveManually() {
+
+    //get user input from GUI
     val = Serial.read();
 
-//    if(val == 'f') {
-//      motors.setSpeeds(NORMAL_SPEED, NORMAL_SPEED);
-//      delay(200);
-//      motors.setSpeeds(0,0);
-//    }
-
+    //switch statement for each option available in the GUI 
     switch(val) {
 
+        //move forward 
         case 'f':
           motors.setSpeeds(NORMAL_SPEED, NORMAL_SPEED);
           delay(200);
@@ -106,91 +93,90 @@ void moveManually() {
           Serial.print("Moved forward");
           break;
 
+        //move backward
         case 'b':
           motors.setSpeeds(-NORMAL_SPEED, -NORMAL_SPEED);
           delay(200);
           motors.setSpeeds(0,0);
           Serial.print("Moved backward");
           break;
-          
+
+         //move to the left 
         case 'l':
           motors.setSpeeds(-NORMAL_SPEED, NORMAL_SPEED);
           delay(200);
           motors.setSpeeds(0,0);
           Serial.print("Moved left");
           break;
-          
+
+         //move to the right 
         case 'r': 
           motors.setSpeeds(NORMAL_SPEED, -NORMAL_SPEED);
           delay(200);
           motors.setSpeeds(0,0);
           Serial.print("Moved right");
           break;
-          
+
+        //stop 
         case 's':
           motors.setSpeeds(0,0);
           Serial.print("Stopped");
           break;
-          
-        case 'x':
-          motors.setSpeeds(0,0);
-          break;
-          
-        case 'y':
-          motors.setSpeeds(0,0);
-          break;
-          
+/*----task 4------*/
+//        //room on the left 
+//        case 'x':
+//          motors.setSpeeds(0,0);
+//          break;
+//
+//        //room on the right 
+//        case 'y':
+//          motors.setSpeeds(0,0);
+//          break;
+
+        //user input is complete, go back to auto 
         case 'C':
           currentSetting = 'a';
           Serial.print("Going back to auto");
           break;
-          
+
+        //robot at end of corridor 
         case 'E':
           motors.setSpeeds(0,0);
           Serial.print("At end of corridor");
           break; 
     }
-
-    //if(val == "LeRo") {
-      //give room a number 
-      //tell gui number and left 
-      //turn left for the room 
-      //scan room 
-      //if object is detected, tell gui 
-    //}
-    //if(val == "RiRo") {
-      //give the room a number
-      //tell gui number and right 
-      //turn right for the room 
-      //scan room 
-      //if object is detected, tell gui 
-    //}
-  
 }
 
 void moveAutonomously() {
   //move along the corridor keeping within the black lines until it reaches a corner
+  
+  //get user input form GUI 
   val = Serial.read();
+  //read values from sensors to see if on line 
   sensors.read(sensor_values);
-
+  
+  //if user tells robot to stop 
   if(val == 's')
   {
     motors.setSpeeds(0,0);
     Serial.print("Stopped");
   }
   else {
+    //task 4 
     if(val == 'x')
     {
       //go to manual mode 
       currentSetting = 'm';
     }
     else {
+      //task 4 
       if(val == 'y')
       {
         //go to manual mode
         currentSetting = 'm';
       }
       else {
+        //if center sensor detects black line, must be at a corner 
         if(sensor_values[3] > maxSensorValue[3])
         {
           motors.setSpeeds(0,0);
@@ -198,6 +184,7 @@ void moveAutonomously() {
           Serial.print("At a corner");
         }
         else {
+          //if right most sensor detects black line, reverse and re-align 
           if(sensor_values[5] >= maxSensorValue[5])
           {
             motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
@@ -209,6 +196,7 @@ void moveAutonomously() {
             Serial.print("Moved back to center");
           }
           else {
+            //if left most sensor detects black line, reverse and re-align 
             if(sensor_values[0] >= maxSensorValue[0])
             {
               motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
@@ -220,6 +208,7 @@ void moveAutonomously() {
               Serial.print("Move back to center");
             }
             else {
+              //otherwise, continue forward in auto mode 
               motors.setSpeeds(NORMAL_SPEED, NORMAL_SPEED);
               currentSetting = 'a';
             }
