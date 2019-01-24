@@ -4,6 +4,7 @@
 #include <QTRSensors.h>
 #include <ZumoReflectanceSensorArray.h>
 #include <ZumoShield.h>
+#include <NewPing.h>
 
 /*-----motion global variables-----*/
 #define NORMAL_SPEED      100
@@ -11,13 +12,15 @@
 #define TURN_SPEED        100
 #define REVERSE_DURATION  200
 #define TURN_DURATION     150
-#define TRIGGER_PIN
-#define ECHO_PIN
+#define TRIGGER_PIN       12
+#define ECHO_PIN          11
+#define MAX_DISTANCE      200 //max distance (in cm) to ping 
 
 /*-----hardware declarations-----*/
 ZumoMotors motors;
 ZumoReflectanceSensorArray sensors(QTR_NO_EMITTER_PIN);
 Pushbutton button(ZUMO_BUTTON);
+NewPing uSensor(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
 /*-----other global variables-----*/
 unsigned int sensor_values[6];
@@ -162,19 +165,29 @@ void moveAutonomously() {
       if(val == 'x')
       {
         //room is on the left 
+        Serial.print("Room on the left");
         //number the room 
+        roomNumber = roomNumber + 1;
         //move manually to let the user turn into the room 
+        enterRoom();
         //search room 
+        searchRoom();
         //back to manual to let user move into corridor 
+        currentSetting = 'm';
       }
       else{
         if(val == 'y')
         {
           //room is on the right
+          Serial.print("Room on the right");
           //number the room  
+          roomNUmber = roomNUmber + 1;
           //move manually to let the user turn into the room
+          enterRoom();
           //search room 
+          searchRoom();
           //back to manual to let user move into corridor 
+          currentSetting = 'm';
         }
       }
     }
@@ -223,13 +236,17 @@ void moveAutonomously() {
   
 }
 
-void searchARoomAuto() {
-//move into room
-//stop 
-//scan around the room 
-//if object is present, tell the gui which room it is in
-//stop 
-//tell user to navigate out thr room and turn into corridor 
+void searchRoom() {
+    //move into room
+    motors.setSpeeds(NORMAL_SPEED, NORMAL_SPEED);
+    delay(200);
+    //stop 
+    motors.setSpeeds(0,0);
+    //scan around the room 
+    
+    //if object is present, tell the gui which room it is in
+    //stop 
+    //tell user to navigate out thr room and turn into corridor 
 
 }
 
