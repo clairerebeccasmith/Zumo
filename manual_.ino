@@ -243,16 +243,40 @@ void searchRoom() {
     //stop 
     motors.setSpeeds(0,0);
     //scan around the room 
-    
-    //if object is present, tell the gui which room it is in
-    //stop 
-    //tell user to navigate out thr room and turn into corridor 
+    //sweep around room like during calibration to check whole room 
+    for(int i = 0; i < 80; i++)
+    {
+    if ((i > 10 && i <= 30) || (i > 50 && i <= 70))
+    {
+      motors.setSpeeds(-200, 200);
+      if(uSensor.ping_cm() > 0)
+      {
+        Serial.print("Person in room " + roomNumber);
+      }
+    }
+    else
+    {
+      motors.setSpeeds(200, -200);
+      if(uSensor.ping_cm() > 0)
+      {
+        Serial.print("Person in room " + roomNumber);
+      }
+    }
+    //stop
+    motors.setSpeeds(0,0); 
+    //tell user to navigate out the room and turn into corridor
+    Serial.print("Move me back onto the corridor please."); 
 
 }
 
 void enterRoom() {
+  val = Serial.read();
   //while val != 'C' 
-  //allow user to move manually 
+  while(val != 'C')
+  {
+    //allow user to move manually 
+    moveManually();
+  }
   //when val is 'C'
   //leave function 
 }
