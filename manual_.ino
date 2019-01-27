@@ -29,6 +29,7 @@ bool wall;
 char val;
 int maxSensorValue[6];
 int roomNumber;
+int endNumber;
 
 /*-----setup-----*/
 void setup() 
@@ -64,6 +65,7 @@ void setup()
     //start robot in autonomous mode 
     currentSetting = 'a';
     roomNumber = 0;
+    endNumber = 0;
     button.waitForButton();
     
 }
@@ -136,6 +138,12 @@ void moveManually() {
 
         //robot at end of corridor 
         case 'E':
+          //let Zumo know how many endpoints it has reached so can decide which behaviour to follow 
+          endNumber = endNumber + 1;
+          if(endNumber == 2)
+          {
+            Serial.print("Home time");s
+          }
           motors.setSpeeds(0,0);
           Serial.print("At end of corridor");
           break; 
@@ -181,7 +189,7 @@ void moveAutonomously() {
           //room is on the right
           Serial.print("Room on the right");
           //number the room  
-          roomNUmber = roomNUmber + 1;
+          roomNumber = roomNumber + 1;
           //move manually to let the user turn into the room
           enterRoom();
           //search room 
@@ -232,7 +240,7 @@ void moveAutonomously() {
         }
       }
     }
-  }
+  
   
 }
 
@@ -267,6 +275,7 @@ void searchRoom() {
     //tell user to navigate out the room and turn into corridor
     Serial.print("Move me back onto the corridor please."); 
 
+}
 }
 
 void enterRoom() {
