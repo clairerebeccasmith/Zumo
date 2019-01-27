@@ -22,5 +22,13 @@ Task 3:
   * **Completed:** YES
 
 Task 4:
+  * **Description:** User tells the Zumo it has arrived at a room, manually turns the Zumo towards the room so that it can then scan the room itself automatically. If a person is found within the room 
+  * **Problems faced:** Getting the Zumo to scan around the whole room not just in front of it. 
+  * **Solution:** Sweep from left to right on the spot, like during calibration at the start, so the sensor passes over the whole room.
+  * **Completed:** YES
 
 Task 5:
+  * **Description:** 
+  * **Problems faced:**
+  * **Solution:** 
+  * **Completed:**
