@@ -1,6 +1,9 @@
 # Zumo
 Programming Things Module - Individual Assignment 
 
+### Overview
+Modify and code a Pololu Zumo robot to perform a simulated search and rescue operation involving people trapped in a single floor of a buiding filled with smoke. 
+
 ### Objectives
 Task 1: 
   * **Description:** The Zumo can be driven down the corridor by the user using a GUI.
@@ -32,3 +35,13 @@ Task 5:
   * **Problems faced:** Didn't leave myself enough time to finish this task. 
   * **Solution:** 
   * **Completed:** NO 
+  
+  ### Acknowledgements 
+  * For my GUI I used the ControlP5 library.
+  * I used the BorderDetect and MazeFollower examples within the ZumoShield library as a starting point for navigating the Zumo down the corridor between the lines. 
+  * To use the ultrasonic sensor I used the NewPing library. 
+  
+  ### Personal Reflection 
+  I feel I started this project well with tasks one through to three, however I slowed down progress after that which meant I quickly ran out of time for the remaining three tasks. I did manage to complete task four and start five but did not get onto six. My time management needed to be a lot better. If I were to do this project again, I would maintain the work flow I had for the first tasks throughtout the whole project to ensure a successful outcome. 
+  I feel I faced the problems I encountered while programming and testing the robot well, finding solutions for all of them. 
+  
