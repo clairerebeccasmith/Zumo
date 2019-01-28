@@ -43,5 +43,6 @@ Task 5:
   
   ### Personal Reflection 
   I feel I started this project well with tasks one through to three, however I slowed down progress after that which meant I quickly ran out of time for the remaining three tasks. I did manage to complete task four and start five but did not get onto six. My time management needed to be a lot better. If I were to do this project again, I would maintain the work flow I had for the first tasks throughtout the whole project to ensure a successful outcome. 
+  
   I feel I faced the problems I encountered while programming and testing the robot well, finding solutions for all of them. 
   
