@@ -142,7 +142,7 @@ void moveManually() {
           endNumber = endNumber + 1;
           if(endNumber == 2)
           {
-            Serial.print("Home time");s
+            Serial.print("Home time");
           }
           motors.setSpeeds(0,0);
           Serial.print("At end of corridor");
