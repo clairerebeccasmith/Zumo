@@ -28,7 +28,7 @@ Task 4:
   * **Completed:** YES
 
 Task 5:
-  * **Description:** 
-  * **Problems faced:**
+  * **Description:** User turns Zumo when it gets the T-junction to go down one of the corridors. When the Zumo reaches the end of the corridor, it stops and waits for the user to tell it has reached the end. The Zumo then goes to the other half of the corridor, searching autonomously ignoring any user input until it reaches the other end. 
+  * **Problems faced:** Didn't leave myself enough time to finish this task. 
   * **Solution:** 
-  * **Completed:**
+  * **Completed:** NO 
